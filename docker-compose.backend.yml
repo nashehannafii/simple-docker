@@ -8,7 +8,7 @@ services:
     # from the container via host.docker.internal:5555 (macOS/Windows Docker feature).
     # You can override these env vars with `-e` or an env_file when running.
     environment:
-      DB_HOST: host.docker.internal
+      DB_HOST: 103.195.19.140
       DB_PORT: 5555
       DB_USER: root
       DB_PASSWORD: rootpassword
