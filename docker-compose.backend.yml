@@ -3,11 +3,17 @@ version: '3.8'
 services:
   backend:
     build: ./backend
+    # Defaults chosen so backend can run standalone on macOS with a host MySQL
+    # If you run the DB using docker-compose.db.yml the DB will be reachable
+    # from the container via host.docker.internal:5555 (macOS/Windows Docker feature).
+    # You can override these env vars with `-e` or an env_file when running.
     environment:
-      DB_HOST: db
-      DB_PORT: 3306
+      DB_HOST: host.docker.internal
+      DB_PORT: 5555
       DB_USER: root
       DB_PASSWORD: rootpassword
       DB_NAME: testdb
     ports:
       - "5001:8000"
+    # Optional: if you want the backend compose to also start a DB, run with:
+    # docker-compose -f docker-compose.db.yml -f docker-compose.backend.yml up --build

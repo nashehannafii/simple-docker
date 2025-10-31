@@ -40,6 +40,23 @@ Run only backend (backend expects a DB at `db` if you run it together; for local
 docker-compose -f docker-compose.backend.yml up --build
 ```
 
+Notes for running backend alone:
+- The `docker-compose.backend.yml` defaults DB host to `host.docker.internal:5555` so the backend container will attempt to reach a MySQL instance listening on the host at port 5555 (this works on macOS/Windows Docker). If you started the DB using `docker-compose.db.yml`, it maps container 3306 to host 5555 so the backend will connect to it.
+- Alternatively, run the DB and backend together with two compose files:
+
+```bash
+docker-compose -f docker-compose.db.yml -f docker-compose.backend.yml up --build
+```
+
+Run frontend alone:
+
+```bash
+docker-compose -f docker-compose.frontend.yml up --build
+```
+
+Frontend note:
+- The frontend fetches the backend at `http://localhost:5001/users`. When you run the frontend container and access it from your browser at `http://localhost:5000` the browser will request `http://localhost:5001` on the host — make sure the backend is running and mapped to 5001 (either by running the main `docker-compose.yml` or `docker-compose.backend.yml`).
+
 Run only frontend:
 
 ```bash

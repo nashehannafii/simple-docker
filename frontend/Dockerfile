@@ -3,7 +3,9 @@ FROM node:18-alpine AS build
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
-RUN npm ci
+# Use `npm install` when there is no package-lock.json in the repo
+# If you want deterministic installs, commit package-lock.json and switch back to `npm ci`
+RUN npm install
 
 COPY . .
 RUN npm run build
