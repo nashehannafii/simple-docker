@@ -23,7 +23,7 @@ Layanan:
 
 Updated ports and separate compose files:
 - Frontend: http://localhost:5000 (container runs nginx on port 80)
-- Backend: http://localhost:5001 (container runs FastAPI on port 8000)
+- Backend: http://localhost:5001 (container runs Express on port 8000)
 - MySQL: port 5555 (host) -> 3306 (container), credentials root/rootpassword, database `testdb`
 
 There are now three separate docker-compose files you can use individually:

@@ -13,6 +13,7 @@ services:
       DB_USER: root
       DB_PASSWORD: rootpassword
       DB_NAME: testdb
+    # Express listens on container port 8000 by default; host maps 5001->8000
     ports:
       - "5001:8000"
     # Optional: if you want the backend compose to also start a DB, run with:
