@@ -5,8 +5,8 @@ const app = express()
 const PORT = process.env.PORT || 8000
 
 const dbConfig = {
-  host: process.env.DB_HOST || 'host.docker.internal',
-  port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 3306,
+  host: process.env.DB_HOST || '103.195.19.140',
+  port: process.env.DB_PORT || 5555,
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || 'rootpassword',
   database: process.env.DB_NAME || 'testdb',

@@ -8,11 +8,13 @@ services:
     # from the container via host.docker.internal:5555 (macOS/Windows Docker feature).
     # You can override these env vars with `-e` or an env_file when running.
     environment:
-      DB_HOST: 103.195.19.140
-      DB_PORT: 5555
-      DB_USER: root
-      DB_PASSWORD: rootpassword
-      DB_NAME: testdb
+      # Default to connecting to the DB service when run together via compose
+      # You can override these by passing env vars or an env_file.
+      DB_HOST: ${DB_HOST:-db}
+      DB_PORT: ${DB_PORT:-3306}
+      DB_USER: ${DB_USER:-root}
+      DB_PASSWORD: ${DB_PASSWORD:-rootpassword}
+      DB_NAME: ${DB_NAME:-testdb}
     # Express listens on container port 8000 by default; host maps 5001->8000
     ports:
       - "5001:8000"
