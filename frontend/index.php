@@ -1,5 +1,5 @@
 <?php
-$backend = getenv('BACKEND_URL') ?: 'http://localhost:5001';
+$backend = getenv('BACKEND_URL') ?: 'http://52.205.19.193:5001';
 $users = null;
 $error = null;
 

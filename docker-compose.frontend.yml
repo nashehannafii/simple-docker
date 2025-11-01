@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  php-frontend:
+  frontend:
     build:
       context: ./frontend
       args:
-        BACKEND_URL: ${BACKEND_URL:-http://localhost:5001}
+        BACKEND_URL: ${BACKEND_URL:-http://52.205.19.193:5001}
     ports:
       - "5002:80"
     environment:
-      - BACKEND_URL=${BACKEND_URL:-http://localhost:5001}
+      - BACKEND_URL=${BACKEND_URL:-http://52.205.19.193:5001}
