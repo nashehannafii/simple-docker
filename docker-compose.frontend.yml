@@ -7,6 +7,6 @@ services:
       args:
         BACKEND_URL: ${BACKEND_URL:-http://52.205.19.193:5001}
     ports:
-      - "5002:80"
+      - "5000:80"
     environment:
       - BACKEND_URL=${BACKEND_URL:-http://52.205.19.193:5001}

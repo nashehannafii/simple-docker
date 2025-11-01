@@ -76,7 +76,7 @@ PHP frontend
 ---------------
 Jika Anda ingin mencoba frontend berbasis PHP sederhana yang melakukan request server-side ke backend, ada service `frontend` tersedia.
 
-Jalankan PHP frontend (default host port 5002):
+Jalankan PHP frontend (default host port 5000):
 
 ```bash
 docker-compose -f docker-compose.frontend.yml up --build
