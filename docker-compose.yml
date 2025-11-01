@@ -27,7 +27,7 @@ services:
 
   frontend:
     build:
-      context: ./php-frontend
+      context: ./frontend
       args:
         BACKEND_URL: ${BACKEND_URL:-http://localhost:5001}
     depends_on:
