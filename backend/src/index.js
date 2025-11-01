@@ -5,7 +5,7 @@ const app = express()
 const PORT = process.env.PORT || 8000
 
 const dbConfig = {
-  host: process.env.DB_HOST || '103.195.19.140',
+  host: process.env.DB_HOST || 'localhost',
   port: process.env.DB_PORT || 5555,
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || 'rootpassword',

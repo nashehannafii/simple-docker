@@ -5,7 +5,7 @@ export default function App() {
   useEffect(() => {
     // For local development this points to backend on host (docker-compose maps 8000)
     // backend is mapped to host port 5001 in the compose files
-    fetch("http://103.195.19.140:5001/users")
+    fetch("http://52.205.19.193:5001/users")
       .then((res) => res.json())
       .then(setUsers)
       .catch((err) => console.error(err))
