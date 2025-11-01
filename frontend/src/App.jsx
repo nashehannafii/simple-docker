@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react"
 
+// Use Vite env var when provided; otherwise default to same host with port 5001
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || `${window.location.protocol}//${window.location.hostname}:5001`
+
 export default function App() {
   const [users, setUsers] = useState([])
+
   useEffect(() => {
-    // For local development this points to backend on host (docker-compose maps 8000)
-    // backend is mapped to host port 5001 in the compose files
-    fetch("http://52.205.19.193:5001/users")
-      .then((res) => res.json())
+    const url = `${BACKEND_URL}/users`
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        return res.json()
+      })
       .then(setUsers)
-      .catch((err) => console.error(err))
+      .catch((err) => console.error("Failed to fetch users:", err))
   }, [])
 
   return (
@@ -20,6 +26,7 @@ export default function App() {
           <li key={u.id}>{u.name}</li>
         ))}
       </ul>
+      {users.length === 0 && <p>(no users or API unreachable)</p>}
     </div>
   )
 }

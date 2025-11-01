@@ -2,6 +2,13 @@ version: '3.8'
 
 services:
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        # Allow overriding the backend URL/port at build time via the VITE_BACKEND_URL env var
+        VITE_BACKEND_URL: ${VITE_BACKEND_URL:-http://localhost:5001}
     ports:
       - "5000:80"
+    # Optional runtime env (not needed if the value is baked into the production build)
+    environment:
+      - VITE_BACKEND_URL=${VITE_BACKEND_URL:-http://localhost:5001}

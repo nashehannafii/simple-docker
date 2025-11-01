@@ -2,6 +2,10 @@ const express = require('express')
 const mysql = require('mysql2/promise')
 
 const app = express()
+const cors = require('cors')
+
+// Allow requests from frontend during development. For production, lock this down.
+app.use(cors())
 const PORT = process.env.PORT || 8000
 
 const dbConfig = {
