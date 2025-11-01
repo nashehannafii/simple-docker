@@ -12,7 +12,7 @@ RUN npm install
 
 COPY . .
 # Write a Vite env file so import.meta.env.VITE_BACKEND_URL is available at build time
-RUN if [ -n "$VITE_BACKEND_URL" ]; then echo "VITE_BACKEND_URL=$VITE_BACKEND_URL" > .env; else echo "VITE_BACKEND_URL=http://localhost:5001" > .env; fi
+RUN if [ -n "$VITE_BACKEND_URL" ]; then echo "VITE_BACKEND_URL=$VITE_BACKEND_URL" > .env; else echo "VITE_BACKEND_URL=http://52.205.19.193:5001" > .env; fi
 RUN npm run build
 
 # production stage
