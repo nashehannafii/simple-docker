@@ -1,22 +1,15 @@
-# build stage
-FROM node:18-alpine AS build
-WORKDIR /app
+FROM php:8.1-apache
 
-# Allow injecting backend URL at build time; Vite will pick it up from .env
-ARG VITE_BACKEND_URL
+WORKDIR /var/www/html
 
-COPY package.json package-lock.json* ./
-# Use `npm install` when there is no package-lock.json in the repo
-# If you want deterministic installs, commit package-lock.json and switch back to `npm ci`
-RUN npm install
+# Copy application
+COPY . /var/www/html
 
-COPY . .
-# Write a Vite env file so import.meta.env.VITE_BACKEND_URL is available at build time
-RUN if [ -n "$VITE_BACKEND_URL" ]; then echo "VITE_BACKEND_URL=$VITE_BACKEND_URL" > .env; else echo "VITE_BACKEND_URL=http://52.205.19.193:5001" > .env; fi
-RUN npm run build
+# Ensure mod_rewrite (not strictly necessary here) and expose port 80
+RUN a2enmod rewrite || true
 
-# production stage
-FROM nginx:stable-alpine
-COPY --from=build /app/dist /usr/share/nginx/html
+# Default backend URL (you can override with env BACKEND_URL in compose)
+ENV BACKEND_URL=http://host.docker.internal:5001
+
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["apache2-foreground"]

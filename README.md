@@ -71,3 +71,21 @@ Catatan singkat:
 Next steps (opsional):
 - Tambah env file atau secret management untuk password.
 - Gunakan docker networks dan nginx proxy untuk membuat frontend memanggil backend secara relatif.
+ 
+PHP frontend
+---------------
+Jika Anda ingin mencoba frontend berbasis PHP sederhana yang melakukan request server-side ke backend, ada service `php-frontend` tersedia.
+
+Jalankan PHP frontend (default host port 5002):
+
+```bash
+docker-compose -f docker-compose.php-frontend.yml up --build
+```
+
+Override backend URL ketika menjalankan (mis. jika backend di host atau di IP lain):
+
+```bash
+BACKEND_URL="http://localhost:5001" docker-compose -f docker-compose.php-frontend.yml up --build
+```
+
+PHP frontend akan menampilkan URL API yang dipakai, quick links ke `/users` dan `/health`, serta daftar user (atau pesan error jika tidak dapat menjangkau backend).
