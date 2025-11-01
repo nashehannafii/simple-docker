@@ -6,6 +6,17 @@ const cors = require('cors')
 
 // Allow requests from frontend during development. For production, lock this down.
 app.use(cors())
+// Ensure preflight (OPTIONS) requests are handled
+app.options('*', cors())
+
+// As a safety-net also set permissive CORS headers for all responses.
+// This duplicates what `cors()` does but can help if a proxy strips headers.
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  next()
+})
 const PORT = process.env.PORT || 8000
 
 const dbConfig = {
