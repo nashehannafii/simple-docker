@@ -21,6 +21,13 @@ export default function App() {
     <div style={{ fontFamily: "Arial", padding: 20 }}>
       <h1>Simple React Frontend</h1>
       <p>Users from API:</p>
+      <p>
+        API source: <a href={`${BACKEND_URL}/`} target="_blank" rel="noreferrer">{BACKEND_URL}</a>
+      </p>
+      <p>
+        Quick links: <a href={`${BACKEND_URL}/users`} target="_blank" rel="noreferrer">/users</a> |
+        <a style={{ marginLeft: 6 }} href={`${BACKEND_URL}/health`} target="_blank" rel="noreferrer">/health</a>
+      </p>
       <ul>
         {users.map((u) => (
           <li key={u.id}>{u.name}</li>
