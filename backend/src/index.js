@@ -26,7 +26,7 @@ async function initDb() {
     `)
     const [rows] = await conn.query('SELECT COUNT(*) as cnt FROM users')
     if (rows[0].cnt === 0) {
-      await conn.query("INSERT INTO users (name) VALUES ('Alice'), ('Bob')")
+      await conn.query("INSERT INTO users (name) VALUES ('Nasheh'), ('Testing')")
     }
   } finally {
     conn.release()
